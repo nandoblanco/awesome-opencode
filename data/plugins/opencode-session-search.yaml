@@ -1,0 +1,46 @@
+name: OpenCode Session Search
+repo: https://github.com/nandoblanco/opencode-session-search
+tagline: Zero-token /search TUI popup over SQLite session history with fuzzy/AND ranking and exact-message auto-scroll.
+description: >-
+  Local-first, zero-token interactive `/search` TUI popup (`Ctrl+F`) for OpenCode that indexes your local SQLite database (`opencode.db`, V2 and V1 schemas) across titles, user/assistant messages, tool calls, shell commands/outputs, and touched file paths. Supports session-level multi-term AND ranking, `"exact phrase"`, `/regex/i`, `~fuzzy` and automatic Levenshtein typo fallback, clickable filter pills (`^p` project/all scope, `^g` role, `^t` date, `^r` mode, `^l` refresh), and `Tab`-selectable snippet cards that jump to the session and auto-scroll the live `@opentui` transcript to the exact matched message.
+scope:
+  - global
+  - project
+min_version: 2.0.0
+tags:
+  - local-first
+  - zero-token
+  - search
+  - session-search
+  - history
+  - sqlite
+  - fuzzy-search
+  - navigation
+  - tui
+homepage: https://github.com/nandoblanco/opencode-session-search#readme
+installation: |
+  ## Installation
+
+  ### Option 1: One-Command Install (Recommended)
+
+  ```sh
+  opencode plugin add github:nandoblanco/opencode-session-search
+  ```
+
+  ### Option 2: Manual Configuration (`cli.json`)
+
+  Add `opencode-session-search` to `~/.config/opencode/cli.json` (or `$XDG_CONFIG_HOME/opencode/cli.json`):
+
+  ```json
+  {
+    "plugins": ["opencode-session-search"]
+  }
+  ```
+
+  Or pass custom options (such as `dialogWidth`, default `"80%"`):
+
+  ```json
+  {
+    "plugins": [["opencode-session-search", { "dialogWidth": "80%" }]]
+  }
+  ```

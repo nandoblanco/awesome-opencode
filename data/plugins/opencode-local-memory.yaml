@@ -1,0 +1,56 @@
+name: OpenCode Local Memory
+repo: https://github.com/nandoblanco/opencode-local-memory
+tagline: Persistent Markdown memory with local CPU embeddings, automatic per-turn recall, and a split-pane /memory TUI.
+description: >-
+  Local-first, zero-token persistent Markdown memory plugin for OpenCode (`topics/*.md` atomic facts + `sessions/*.md` compaction checkpoints) paired with local 384-dim `Xenova/all-MiniLM-L6-v2` CPU embeddings (`vectors.json`). Automatically bootstraps `~/.config/opencode/memory` on first run, injects relevant memories and storage rules before every turn via the `context` hook, captures session checkpoints on compaction, exposes `memory_store`, `memory_search`, and `memory_checkpoint` tools, and includes an 80%-wide split-pane `/memory` TUI popup (`Ctrl+M`) with 0ms lexical + hybrid semantic search, filter pills (`^t` type, `^g` topic, `^r` mode, `^l` resync), and `/memory-add`.
+scope:
+  - global
+  - project
+min_version: 2.0.0
+tags:
+  - local-first
+  - zero-token
+  - memory
+  - persistent-memory
+  - embeddings
+  - semantic-search
+  - compaction
+  - tui
+homepage: https://github.com/nandoblanco/opencode-local-memory#readme
+installation: |
+  ## Installation
+
+  ### Option 1: One-Command Setup (Recommended)
+
+  ```sh
+  npx github:nandoblanco/opencode-local-memory install
+  # or specify a custom memory folder:
+  npx github:nandoblanco/opencode-local-memory install --dir ~/my-memory
+  ```
+
+  Or install with OpenCode's native plugin CLI:
+
+  ```sh
+  opencode plugin add github:nandoblanco/opencode-local-memory
+  ```
+
+  ### Option 2: Manual Configuration
+
+  Add `opencode-local-memory` to `~/.config/opencode/opencode.jsonc` and `~/.config/opencode/cli.json`:
+
+  ```jsonc
+  {
+    "$schema": "https://opencode.ai/config.json",
+    "plugins": [
+      {
+        "package": "opencode-local-memory",
+        "options": {
+          "directory": "~/.config/opencode/memory",
+          "minScore": 0.38,
+          "topK": 6,
+          "dialogWidth": "80%"
+        }
+      }
+    ]
+  }
+  ```

@@ -1,0 +1,56 @@
+name: OpenCode Auto Backup
+repo: https://github.com/nandoblanco/opencode-auto-backup
+tagline: Zero-token automatic pre-edit file backups with smart root detection, hunk diff, and /backups restore TUI.
+description: >-
+  Local-first, zero-token automatic pre-edit file backup plugin for OpenCode (`execute.before` hook on `edit`, `write`, `patch`, `apply_patch`, and `multiedit`). Resolves `<project-root>/.backups/<timestamp>_<slug>/` automatically, scans workspaces to unlimited depth (`rootDir`), prunes old snapshots (`retentionDays`, `0` = never), and provides an 80%-wide `/backups` TUI popup (`Ctrl+Alt+B`) with filter pills (`^t` tool, `^g` date, `^r` retention, `^d` prune), hunk-filtered unified diff preview, and a 3-option `Enter` action menu (restore with automatic `pre-restore` safety backup, open backup file, or launch `code --diff`), plus `backup_list` and `backup_restore` agent tools.
+scope:
+  - global
+  - project
+min_version: 2.0.0
+tags:
+  - local-first
+  - zero-token
+  - backup
+  - auto-backup
+  - restore
+  - undo
+  - snapshots
+  - diff
+  - tui
+homepage: https://github.com/nandoblanco/opencode-auto-backup#readme
+installation: |
+  ## Installation
+
+  ### Option 1: One-Command Installer (Recommended)
+
+  ```sh
+  npx github:nandoblanco/opencode-auto-backup install
+  ```
+
+  Or install with OpenCode's native plugin CLI:
+
+  ```sh
+  opencode plugin add github:nandoblanco/opencode-auto-backup
+  ```
+
+  This registers `opencode-auto-backup` in both `~/.config/opencode/opencode.jsonc` (server `execute.before` hook + `backup_list`/`backup_restore` tools) and `~/.config/opencode/cli.json` (`/backups` TUI modal).
+
+  ### Option 2: Manual Configuration
+
+  Add `opencode-auto-backup` to `~/.config/opencode/opencode.jsonc` and `~/.config/opencode/cli.json`:
+
+  ```jsonc
+  {
+    "plugins": [
+      [
+        "opencode-auto-backup",
+        {
+          "retentionDays": 30,
+          "debounceMs": 0,
+          "rootDir": "",
+          "dialogWidth": "80%"
+        }
+      ]
+    ]
+  }
+  ```
